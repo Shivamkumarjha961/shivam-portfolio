@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiExternalLink, FiGithub, FiCheckCircle, FiCalendar, FiX, FiInfo } from 'react-icons/fi';
 import { SiReact, SiTailwindcss, SiNodedotjs, SiExpress, SiMongodb, SiGoogle, SiGithub as SiGithubBrand, SiJsonwebtokens } from 'react-icons/si';
@@ -201,31 +202,38 @@ export default function Projects() {
       </div>
 
       {/* Modal overlays */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-dark-bg/85 backdrop-blur-md"
-            onClick={() => setSelectedProject(null)}
-          >
+      {createPortal(
+        <AnimatePresence>
+          {selectedProject && (
             <motion.div
-              initial={{ scale: 0.9, y: 30 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 30 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="w-full max-w-2xl bg-dark-card border border-white/10 rounded-2xl shadow-2xl overflow-hidden text-left relative"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-dark-bg/85 backdrop-blur-md"
+              onClick={() => {
+                console.log("Backdrop clicked!");
+                setSelectedProject(null);
+              }}
             >
-              {/* Close button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-xl bg-dark-bg/80 text-dark-text border border-white/5 hover:text-brand-cyan hover:scale-105 transition-all cursor-pointer"
-                aria-label="Close project details"
+              <motion.div
+                initial={{ scale: 0.9, y: 30 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 30 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="w-full max-w-2xl bg-dark-card border border-white/10 rounded-2xl shadow-2xl overflow-hidden text-left relative"
+                onClick={(e) => e.stopPropagation()}
               >
-                <FiX className="w-5 h-5" />
-              </button>
+                {/* Close button */}
+                <button
+                  onClick={(e) => {
+                    console.log("X button clicked!");
+                    setSelectedProject(null);
+                  }}
+                  className="absolute top-4 right-4 z-[110] p-2 rounded-xl bg-dark-bg/80 text-dark-text border border-white/5 hover:text-brand-cyan hover:scale-105 transition-all cursor-pointer pointer-events-auto"
+                  aria-label="Close project details"
+                >
+                  <FiX className="w-5 h-5" />
+                </button>
 
               {/* Cover Image banner */}
               <div className="relative h-48 md:h-56 w-full">
@@ -326,7 +334,9 @@ export default function Projects() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
-    </section>
-  );
+      </AnimatePresence>,
+      document.body
+    )}
+  </section>
+);
 }
