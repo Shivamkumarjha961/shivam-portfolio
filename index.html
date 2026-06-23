@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Recruiter Focused SEO Meta Tags -->
+    <title>Shivam Kumar Jha | MERN Stack & Full Stack Developer</title>
+    <meta name="description" content="Portfolio of Shivam Kumar Jha, an ultra-modern MERN Stack & Full Stack Developer specializing in building high-scale REST APIs, interactive React UIs, and AI-integrated web systems." />
+    <meta name="keywords" content="Shivam Kumar Jha, MERN Stack Developer, Full Stack Developer, React Developer, Node.js Developer, SDE Portfolio, Software Engineer, B.Tech CSE, Lovely Professional University, CareerPilot, MediCare, Apna Shop" />
+    <meta name="author" content="Shivam Kumar Jha" />
+
+    <!-- Open Graph for LinkedIn / Twitter sharing -->
+    <meta property="og:title" content="Shivam Kumar Jha | MERN Stack & Full Stack Developer" />
+    <meta property="og:description" content="Discover Shivam Kumar Jha's modern e-commerce, AI placement and healthcare platforms. Experience modern developer portfolio with premium interactive elements." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Inline loading styles so they render instantly -->
+    <style>
+      body {
+        margin: 0;
+        background-color: #030712;
+        font-family: 'Outfit', 'Inter', sans-serif;
+        overflow-x: hidden;
+      }
+      
+      .initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #030712;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      .loader-logo {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        animation: pulseLogo 2s infinite alternate;
+      }
+
+      .loader-ring {
+        position: relative;
+        width: 60px;
+        height: 60px;
+      }
+
+      .loader-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        margin: 6px;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        animation: ringSpin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-top-color: #06b6d4;
+      }
+
+      .loader-ring div:nth-child(1) { animation-delay: -0.45s; border-top-color: #6366f1; }
+      .loader-ring div:nth-child(2) { animation-delay: -0.3s; border-top-color: #8b5cf6; }
+      .loader-ring div:nth-child(3) { animation-delay: -0.15s; border-top-color: #10b981; }
+
+      @keyframes ringSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes pulseLogo {
+        0% { transform: scale(0.95); opacity: 0.8; }
+        100% { transform: scale(1.05); opacity: 1; }
+      }
+
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #030712;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #334155;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Premium Vercel-style Loading Splash -->
+    <div id="initial-loader" class="initial-loader">
+      <div class="loader-logo">SKJ</div>
+      <div class="loader-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <p style="color: #9ca3af; font-size: 0.875rem; letter-spacing: 0.15em; margin-top: 15px; text-transform: uppercase;">
+        Loading Digital Portfolio
+      </p>
+    </div>
+
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Script to fade out loader when script loads -->
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.style.visibility = 'hidden';
+            loader.remove();
+          }, 500);
+        }
+      });
+    </script>
+  </body>
+</html>
